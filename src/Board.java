@@ -1,7 +1,7 @@
 public class Board {
     // declare instance variables here!
     public Board(int x, int y) { // constructor!
-
+// CHANGES
     }
     public void placePiece(Piece p) { // updates the state of the board with the information of the Piece
         if (p instanceof MegaPiece) {
