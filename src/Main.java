@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 public class Main {
     static final int BOARDX = 7;
@@ -17,7 +18,47 @@ public class Main {
             board.displayAll();
             System.out.println("Player: " + player + ":");
 
+            Piece piece = null;
+            boolean megaPiece = false;
+
             // Stuff should go here, probably
+            if (remainingMegaPiece[player - 1] != 0){
+                System.out.println("Use MegaPiece? (Y/N)?");
+
+                String answer = input.nextLine();
+                while (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
+                    System.out.println("Please enter a valid answer.");
+                    answer = input.nextLine();
+                }
+
+                if (answer.equalsIgnoreCase("y")) {
+                    megaPiece = true;
+                    remainingMegaPiece[player - 1] = 0;
+                }
+                else if (answer.equalsIgnoreCase("n"))
+                    megaPiece = false;
+            }
+
+            if (megaPiece) {
+                int dropLocation = -1;
+                System.out.println("Enter the column you would like to place your Piece at.");
+                dropLocation = input.nextInt();
+                if (dropLocation <= 1 && dropLocation >= board.getBoardPieces().length - 2)
+                    break;
+
+                piece = new MegaPiece(dropLocation, player, board);
+                board.placePiece(piece);
+            }
+            else {
+                int dropLocation = -1;
+                System.out.println("Enter the column you would like to place your Piece at.");
+                dropLocation = input.nextInt();
+                if (dropLocation <= 0 && dropLocation >= board.getBoardPieces().length - 1)
+                    break;
+
+                piece = new Piece(dropLocation, player, board);
+                board.placePiece(piece);
+            }
 
             if (board.checkForWin(player)) {
                 System.out.println("player: " + player + " has won!");

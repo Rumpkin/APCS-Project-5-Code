@@ -46,7 +46,7 @@ public class Piece {
     }
     public int getCol() {
         return column;
-    } //FIXME
+    }
     public int getRow() {
         return row;
     }
