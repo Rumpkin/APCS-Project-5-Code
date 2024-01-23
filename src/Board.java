@@ -12,13 +12,16 @@ public class Board {
     }
     public void placePiece(Piece p) { // updates the state of the board with the information of the Piece
         if (p instanceof MegaPiece) {
-            for (int i = -1; i < 3; i++) {
-                for (int j = -1; j < 3; j++) {
+            System.out.println(p.getCol() + " : " + p.getRow());
+            boardPieces[p.getCol()][p.getRow()] = p.getColor();
+            /*for (int i = -1; i < 2; i++) {
+                for (int j = -2; j < 1; j++) {
+                    System.out.println((p.getCol() + j) + ", " + (p.getRow() + i) + " : " + p.getColor());
                     boardPieces[p.getCol() + i][p.getRow() + j] = p.getColor();
                 }
-            }
+            }*/
         } else {
-            boardPieces[p.getCol()][p.getRow()] = p.getColor();
+            boardPieces[p.getRow()][p.getCol()] = p.getColor();
         }
     }
 
@@ -53,7 +56,7 @@ public class Board {
         }
         System.out.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
     }
-    public boolean checkForWin(int player) { //FIXME
+    public boolean checkForWin(int player) {
 
         if (checkForWinHorizontal(player))
             return true;

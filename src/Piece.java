@@ -7,6 +7,7 @@ public class Piece {
     public Piece(int col, int color, Board board) { // constructor!
         column = col;
         row = findRow(col, board);
+        System.out.println("row: " + row);
         this.color = color;
     }
 
@@ -14,34 +15,33 @@ public class Piece {
         int[][] boardPieces = board.getBoardPieces();
 
         if (this instanceof MegaPiece) {
+            //FIX EL MEGA PIECE
             if (column + 1 >= boardPieces.length || column - 1 < 0)
                 return -1;
 
             if (boardPieces[column][0] != 0 || boardPieces[column - 1][0] != 0 || boardPieces[column + 1][0] != 0)
                 return -1;
 
-            for (int i = 0; i < boardPieces[column].length; i++) {
-                if (boardPieces[column][i] != 0)
+            for (int i = 0; i < boardPieces[0].length; i++) {
+                System.out.println("AHJ : " + i);
+                if (boardPieces[i][column] != 0)
                     return i - 2;
 
-                if (boardPieces[column + 1][i] != 0)
+                if (boardPieces[i + 1][column] != 0)
                     return i - 2;
 
-                if (boardPieces[column - 1][i] != 0)
+                if (boardPieces[i + 2][column] != 0)
                     return i - 2;
             }
 
-            return boardPieces[column].length - 2;
+            return boardPieces.length - 2;
         } else {
-            if (boardPieces[column][0] != 0)
-                return -1;
-
-            for (int i = 0; i < boardPieces[column].length; i++) {
-                if (boardPieces[column][i] != 0)
+            for (int i = 0; i < boardPieces.length; i++) {
+                if (boardPieces[i][column] != 0)
                     return i - 1;
             }
 
-            return boardPieces[column].length - 1;
+            return boardPieces.length - 1;
         }
     }
     public int getCol() {

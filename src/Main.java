@@ -40,19 +40,19 @@ public class Main {
             }
 
             if (megaPiece) {
-                int dropLocation = -1;
                 System.out.println("Enter the column you would like to place your Piece at.");
-                dropLocation = input.nextInt();
+                int dropLocation = input.nextInt() - 1;
                 if (dropLocation <= 1 && dropLocation >= board.getBoardPieces().length - 2)
                     break;
 
                 piece = new MegaPiece(dropLocation, player, board);
+                System.out.println(piece.getCol());
+                System.out.println(piece.getRow());
                 board.placePiece(piece);
             }
             else {
-                int dropLocation = -1;
                 System.out.println("Enter the column you would like to place your Piece at.");
-                dropLocation = input.nextInt();
+                int dropLocation = input.nextInt() - 1;
                 if (dropLocation <= 0 && dropLocation >= board.getBoardPieces().length - 1)
                     break;
 
