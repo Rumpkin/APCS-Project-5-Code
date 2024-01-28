@@ -7,7 +7,6 @@ public class Piece {
     public Piece(int col, int color, Board board) { // constructor!
         column = col;
         row = findRow(col, board);
-        System.out.println("row: " + row);
         this.color = color;
     }
 
@@ -15,25 +14,11 @@ public class Piece {
         int[][] boardPieces = board.getBoardPieces();
 
         if (this instanceof MegaPiece) {
-            //FIX EL MEGA PIECE
-            if (column + 1 >= boardPieces.length || column - 1 < 0)
-                return -1;
-
-            if (boardPieces[column][0] != 0 || boardPieces[column - 1][0] != 0 || boardPieces[column + 1][0] != 0)
-                return -1;
-
-            for (int i = 0; i < boardPieces[0].length; i++) {
-                System.out.println("AHJ : " + i);
-                if (boardPieces[i][column] != 0)
-                    return i - 2;
-
-                if (boardPieces[i + 1][column] != 0)
-                    return i - 2;
-
-                if (boardPieces[i + 2][column] != 0)
-                    return i - 2;
+            for (int j = -1; j < boardPieces.length - 2; j++) {
+                if (boardPieces[j + 2][column - 1] != 0 || boardPieces[j + 2][column] != 0 || boardPieces[j + 2][column + 1] != 0) {
+                    return j;
+                }
             }
-
             return boardPieces.length - 2;
         } else {
             for (int i = 0; i < boardPieces.length; i++) {

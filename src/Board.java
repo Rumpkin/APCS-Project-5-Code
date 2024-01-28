@@ -12,14 +12,12 @@ public class Board {
     }
     public void placePiece(Piece p) { // updates the state of the board with the information of the Piece
         if (p instanceof MegaPiece) {
-            System.out.println(p.getCol() + " : " + p.getRow());
-            boardPieces[p.getCol()][p.getRow()] = p.getColor();
-            /*for (int i = -1; i < 2; i++) {
-                for (int j = -2; j < 1; j++) {
-                    System.out.println((p.getCol() + j) + ", " + (p.getRow() + i) + " : " + p.getColor());
-                    boardPieces[p.getCol() + i][p.getRow() + j] = p.getColor();
+            for (int i = p.getRow() - 1; i < p.getRow() + 2; i++) {
+                for (int z = p.getCol() - 1; z < p.getCol() + 2; z++) {
+                    boardPieces[i][z] = p.getColor();
                 }
-            }*/
+            }
+
         } else {
             boardPieces[p.getRow()][p.getCol()] = p.getColor();
         }
